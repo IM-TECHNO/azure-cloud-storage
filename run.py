@@ -5,7 +5,7 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 app = Flask(__name__)
 #global url
 # Replace <your-storage-account-name> and <your-storage-account-key> with your actual Azure Storage account name and key
-blob_service_client = BlobServiceClient.from_connection_string("DefaultEndpointsProtocol=https;AccountName=testfunctionsblob1;AccountKey=U420AqLVlh8giQ7vmJmLPFleB67jgrbM21tao1eXfhrSbe0g3oSsk4zPxvFiNq1PLyBPjhQkbZBu+ASt4s3Zdg==;EndpointSuffix=core.windows.net")
+blob_service_client = BlobServiceClient.from_connection_string("<connection-string>")
 
 # Replace <your-container-name> with the name of the container you want to upload the file to
 container_client = blob_service_client.get_container_client("raagul")
