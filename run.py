@@ -3,6 +3,12 @@ from flask import Flask, request, redirect, url_for, render_template
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 
 app = Flask(__name__)
+<<<<<<< HEAD
+=======
+#global url
+# Replace <your-storage-account-name> and <your-storage-account-key> with your actual Azure Storage account name and key
+blob_service_client = BlobServiceClient.from_connection_string("<connection-string>")
+>>>>>>> 52e5df6df62d4e7c0e00e3022869f95ab1b53305
 
 blob_service_client = BlobServiceClient.from_connection_string("<connection string>")
 
