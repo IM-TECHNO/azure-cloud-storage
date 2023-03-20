@@ -3,12 +3,10 @@ from flask import Flask, request, redirect, url_for, render_template
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 
 app = Flask(__name__)
-#global url
-# Replace <your-storage-account-name> and <your-storage-account-key> with your actual Azure Storage account name and key
-blob_service_client = BlobServiceClient.from_connection_string("DefaultEndpointsProtocol=https;AccountName=testfunctionsblob1;AccountKey=U420AqLVlh8giQ7vmJmLPFleB67jgrbM21tao1eXfhrSbe0g3oSsk4zPxvFiNq1PLyBPjhQkbZBu+ASt4s3Zdg==;EndpointSuffix=core.windows.net")
 
-# Replace <your-container-name> with the name of the container you want to upload the file to
-container_client = blob_service_client.get_container_client("raagul")
+blob_service_client = BlobServiceClient.from_connection_string("<connection string>")
+
+container_client = blob_service_client.get_container_client("<container name>")
 
 app.config['ALLOWED_EXTENSIONS'] = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 def allowed_file(filename):
@@ -47,10 +45,63 @@ def upload_file():
         <!doctype html>
         <html>
             <body>
-                <h1>Upload a file to Azure Blob Storage</h1>
+                <style>
+                    body{
+                        font-family: 'Poppins', sans-serif;
+                        background-color:#f2f2f2;
+                        height: 100vh;
+                        width:100vw ;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 1.2rem;
+                    }
+                    h3{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content:center;      
+                 }
+                    form {
+                      margin: 0 auto;
+                      width: 400px;
+                      padding: 50px;
+                    }
+                    input{
+                      width: 100%;
+                      padding: 0.5em;
+                      border: 1px solid #CCC;
+                      border-radius: 0.3em;
+                      margin: 0.5em 0;
+                      font-family: 'Poppins', sans-serif;
+                      font-size: 1rem;
+                    }
+                    #file{
+                      width: 100%;
+                      padding: 0.5em;
+                      border: 1px solid #CCC;
+                      border-radius: 0.3em;
+                      margin: 0.5em 0;
+                      background-color: #17e364;
+                      font-family: 'Poppins', sans-serif;
+                      
+                      
+                    }
+                    button:hover{
+                      background-color: #f2f2f2;
+                    }
+                    clrs{
+                        background-color: #17e364;
+                    }
+                  </style>
+                
+                
                 <form method=post enctype=multipart/form-data>
-                    <input type=file name=file>
-                    <input type=submit value=Upload>
+                    <h3>Azure File Storage</h3>
+                    <div class="clrs">
+                    <input type=file name=file id="file">
+                    <input type=submit value=Upload id="sum">
+                    </div>
                 </form>
             </body>
         </html>
@@ -66,9 +117,39 @@ def uploaded_file(filename):
     return f'''
         <!doctype html>
         <html>
+        <head>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+            </head>
             <body>
-                <h1>File {filename} uploaded successfully to Azure Blob Storage {url}</h1>
-                <a href="{url}">URL to File</a>
+                <style>
+                    body{{
+                        font-family: 'Poppins', sans-serif;
+                        background-color:#90988c;
+                        height: 100vh;
+                        width:100vw ;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }}
+                    h1{{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content:center;
+                    }}
+                    .a{{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content:center;
+                    }}
+                </style>
+                <div class="a">
+                <h1>File {filename} uploaded successfully to Azure Blob Storage.</h1>
+                <br>
+                <button><a href="{url}">URL to File</a></button>
+                </div>
             </body>
         </html>
     '''

@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Login Error</title>
-  </head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
   <body>
-    <h1>Login Error</h1>
-    <p>Invalid username or password.</p>
-    <p><a href="{{ url_for('login') }}">Back to Login Page</a></p>
+    <style>
+      body{
+        font-family: 'poppins', sans-serif;
+        background-color: #f2f2f2;
+        height: 100vh;
+        
+        justify-content: center;
+        align-items: center;
+      }
+      h1{
+        text-align: center;
+
+      }
+      form {
+        margin: 0 auto;
+        width: 400px;
+        padding: 20px;
+      }
+      input{
+        width: 100%;
+        padding: 0.5em;
+        border: 1px solid #CCC;
+        border-radius: 0.3em;
+        margin: 0.5em 0;
+      }
+      button{
+        width: 100%;
+       
+        border: 1px solid #CCC;
+        border-radius: 0.3em;
+        margin: 0.5em 0;
+        justify-content: center;
+        align-items: center;
+        
+      }
+      button:hover{
+        background-color: #f2f2f2;
+      }
+    </style>
+    <h1 style="color: red;">Login Error</h1>
+    <br>
+    <p style="text-align: center;">Invalid username or password.</p>
+    <br>
+    <button><p><a href="{{ url_for('login') }}">Back to Login Page</a></p></button>
   </body>
